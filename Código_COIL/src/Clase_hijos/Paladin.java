@@ -2,7 +2,7 @@ package Clase_hijos;
 
 import Clase_padres.Heroe;
 
-public class Paladin extends Heroe{
+public abstract class Paladin extends Heroe{
 private String escudoDivino,espada;
 
 public Paladin(String nombre, int nivel, int salud, int resistencia, int velocidad, int honor, int energiaLuminosa,
@@ -28,19 +28,19 @@ public void setEspada(String espada) {
 	this.espada = espada;
 }
 
-public String AtaqueBásico() {
+public String ataqueBásico() {
 	return null;
 }
 
-public String HabilidadEspecial() {
+public String habilidadEspecial() {
 	return null;
 }
 
-public String ResumenCombate() {
+public String resumenCombate() {
 	return null;
 }
 
-public String EstadoGeneral() {
+public String estadoGeneral() {
 	return null;
 }
 

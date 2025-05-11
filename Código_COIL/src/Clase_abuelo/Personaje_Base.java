@@ -42,8 +42,8 @@ public void setVelocidad(int velocidad) {
 	this.velocidad = velocidad;
 }
 
-public abstract String AtaqueBásico();
-public abstract String HabilidadEspecial();
-public abstract String ResumenCombate();
-public abstract String EstadoGeneral();
+public abstract String ataqueBásico();
+public abstract String habilidadEspecial();
+public abstract String resumenCombate();
+public abstract String estadoGeneral();
 }
