@@ -2,7 +2,7 @@ package Clase_hijos;
 
 import Clase_padres.Heroe;
 
-public abstract class Paladin extends Heroe{
+public class Paladin extends Heroe{
 private String escudoDivino,espada;
 
 public Paladin(String nombre, int nivel, int salud, int resistencia, int velocidad, int honor, int energiaLuminosa,
