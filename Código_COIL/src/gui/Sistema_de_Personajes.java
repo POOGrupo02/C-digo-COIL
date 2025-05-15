@@ -167,7 +167,7 @@ public class Sistema_de_Personajes extends JFrame implements ActionListener {
 		} else {
 			mensaje = "Por favor, selecciona un personaje.";
 		}
-//aqui hice con chat pq no me salia el mensaje luego del if xD
+
 		JOptionPane.showMessageDialog(null, mensaje);
 	}
 }
