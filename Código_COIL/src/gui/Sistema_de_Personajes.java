@@ -145,29 +145,36 @@ public class Sistema_de_Personajes extends JFrame implements ActionListener {
 		btnMostrarSeleccion.setVisible(true);
 	}
 	protected void do_btnMostrarSeleccion_actionPerformed(ActionEvent e) {
-		String seleccion = (String) comboBox.getSelectedItem();
+		String seleccion =comboBox.getSelectedItem().toString();
 		
 		String mensaje = "";
-		if (seleccion.equals("Brujo")) {
+		switch (seleccion) {
+		case"Brujo" :
 			lblPersonaje.setVisible(true);
 			mensaje = "Has elegido al Brujo.\nUsa magia oscura y drena la vida de sus enemigos.";
 			lblPersonaje.setIcon(new ImageIcon(Sistema_de_Personajes.class.getResource("/images/brujo.png")));
-		} else if (seleccion.equals("Asesino")) {
+			break;
+		case"Asesino" :
 			lblPersonaje.setVisible(true);
 			mensaje = "Has elegido al Asesino.\nSilencioso y mortal, experto en venenos.";
 			lblPersonaje.setIcon(new ImageIcon(Sistema_de_Personajes.class.getResource("/images/asesino.png")));
-		} else if (seleccion.equals("Curandero")) {
+			break;
+		case"Curandero" :
 			lblPersonaje.setVisible(true);
 			mensaje = "Has elegido al Curandero.\nSana y protege a sus aliados en batalla.";
 			lblPersonaje.setIcon(new ImageIcon(Sistema_de_Personajes.class.getResource("/images/curandero.png")));
-		} else if (seleccion.equals("Explorador")) {
+			break;
+		case"Explorador" :
 			lblPersonaje.setVisible(true);
 			mensaje = "Has elegido al Explorador.\nÁgil y certero con el arco, se oculta entre las sombras.";
 			lblPersonaje.setIcon(new ImageIcon(Sistema_de_Personajes.class.getResource("/images/explorador.png")));
-		} else {
+			break;
+                  
+		default:
 			mensaje = "Por favor, selecciona un personaje.";
+			break;
 		}
 
-		JOptionPane.showMessageDialog(null, mensaje);
+		JOptionPane.showMessageDialog(this, mensaje);
 	}
 }
