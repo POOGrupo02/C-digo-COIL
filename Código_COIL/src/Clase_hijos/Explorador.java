@@ -4,19 +4,18 @@ import Clase_padres.Heroe;
 
 public class Explorador extends Heroe {
 	
-	private int flechaEspecial;
-
+	private String flechaEspecial;
 	public Explorador(String nombre, int nivel, int salud, int resistencia, int velocidad, int honor,
-			int energiaLuminosa, int flechaEspecial) {
+			int energiaLuminosa, String flechaEspecial) {
 		super(nombre, nivel, salud, resistencia, velocidad, honor, energiaLuminosa);
 		this.flechaEspecial = flechaEspecial;
 	}
 
-	public int getFlechaEspecial() {
+	public String getFlechaEspecial() {
 		return flechaEspecial;
 	}
 
-	public void setFlechaEspecial(int flechaEspecial) {
+	public void setFlechaEspecial(String flechaEspecial) {
 		this.flechaEspecial = flechaEspecial;
 	}
 
@@ -40,16 +39,5 @@ public class Explorador extends Heroe {
 		return null;
 	}
 	
-	public String camuflaje() {
-		return null;
-	}
-	
-	public String colocarTrampa() {
-		return null;
-	}
-	
-	public String disparoLejano() {
-		return null;
-	}
 
 }

@@ -30,12 +30,4 @@ public class Asesino extends Villano {
 	public String estadoGeneral() {
 		return null;
 	}
-	
-	public String ataqueFurtivo() {
-		return null;
-	}
-	
-	public String desorientar() {
-		return null;
-	}
 }

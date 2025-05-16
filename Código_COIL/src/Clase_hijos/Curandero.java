@@ -48,16 +48,4 @@ public class Curandero extends Heroe{
 		return null;
 	}
 	
-	public String purificar() {
-		return null;
-	}
-	
-	public String revivir() {
-		return null;
-	}
-	
-	public String curarHeridas() {
-		return null;
-	}
-	
 }
