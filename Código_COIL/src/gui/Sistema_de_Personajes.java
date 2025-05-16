@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.JTextArea;
 
 public class Sistema_de_Personajes extends JFrame implements ActionListener {
 
@@ -40,6 +41,24 @@ public class Sistema_de_Personajes extends JFrame implements ActionListener {
 	private JLabel lblNewLabel_7;
 	private JTextField textField_1;
 	private JLabel lblNewLabel_8;
+	private JTextField txtFlecha;
+	private JTextField txtEspada;
+	private JLabel lblNewLabel_9;
+	private JLabel lblNewLabel_10;
+	private JTextField txtEscudo;
+	private JLabel lblNewLabel_13;
+	private JTextField txtNvlSigilo;
+	private JLabel lblNewLabel_14;
+	private JTextField txtHechizo;
+	private JLabel lblNewLabel_16;
+	private JTextField txtManá;
+	private JLabel lblNewLabel_18;
+	private JScrollPane scrollPane;
+	private JTextArea txtS;
+	private JLabel lblNewLabel_11;
+	private JTextField txtPociones;
+	private JTextField txtDañoVen;
+	private JLabel lblNewLabel_12;
 
 	/**
 	 * Launch the application.
@@ -106,20 +125,20 @@ public class Sistema_de_Personajes extends JFrame implements ActionListener {
 		}
 		comboBox = new JComboBox<>();
 		comboBox.setVisible(false);
-		comboBox.setBounds(61, 166, 180, 25);
+		comboBox.setBounds(65, 179, 180, 25);
 		contentPane.add(comboBox);
 		{
 	
 		btnMostrarSeleccion = new JButton("MOSTRAR SELECCIÓN");
 		btnMostrarSeleccion.addActionListener(this);
 		btnMostrarSeleccion.setVisible(false);
-		btnMostrarSeleccion.setBounds(61, 124, 180, 25);
+		btnMostrarSeleccion.setBounds(65, 137, 180, 25);
 		contentPane.add(btnMostrarSeleccion);
 		}
 		
 		lblPersonaje = new JLabel("");
 		lblPersonaje.setIcon(new ImageIcon(Sistema_de_Personajes.class.getResource("/images/asesino.png")));
-		lblPersonaje.setBounds(24, 224, 256, 230);
+		lblPersonaje.setBounds(37, 259, 256, 230);
 		contentPane.add(lblPersonaje);
 		lblPersonaje.setVisible(false);
 		{
@@ -187,10 +206,123 @@ public class Sistema_de_Personajes extends JFrame implements ActionListener {
 			lblNewLabel_8.setBounds(844, 48, 116, 20);
 			contentPane.add(lblNewLabel_8);
 		}
+		{
+			txtFlecha = new JTextField();
+			txtFlecha.setColumns(10);
+			txtFlecha.setBounds(614, 139, 105, 20);
+			contentPane.add(txtFlecha);
+		}
+		{
+			txtEspada = new JTextField();
+			txtEspada.setColumns(10);
+			txtEspada.setBounds(486, 139, 105, 20);
+			contentPane.add(txtEspada);
+		}
+		{
+			lblNewLabel_9 = new JLabel("ESPADA");
+			lblNewLabel_9.setForeground(Color.WHITE);
+			lblNewLabel_9.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			lblNewLabel_9.setBounds(486, 112, 116, 20);
+			contentPane.add(lblNewLabel_9);
+		}
+		{
+			lblNewLabel_10 = new JLabel("FLECHA ESPECIAL");
+			lblNewLabel_10.setForeground(Color.WHITE);
+			lblNewLabel_10.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			lblNewLabel_10.setBounds(614, 112, 133, 20);
+			contentPane.add(lblNewLabel_10);
+		}
+		{
+			txtEscudo = new JTextField();
+			txtEscudo.setColumns(10);
+			txtEscudo.setBounds(349, 139, 105, 20);
+			contentPane.add(txtEscudo);
+		}
+		{
+			lblNewLabel_13 = new JLabel("ESCUDO DIVINO");
+			lblNewLabel_13.setForeground(Color.WHITE);
+			lblNewLabel_13.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			lblNewLabel_13.setBounds(349, 112, 145, 20);
+			contentPane.add(lblNewLabel_13);
+		}
+		{
+			txtNvlSigilo = new JTextField();
+			txtNvlSigilo.setColumns(10);
+			txtNvlSigilo.setBounds(600, 201, 105, 20);
+			contentPane.add(txtNvlSigilo);
+		}
+		{
+			lblNewLabel_14 = new JLabel("NIVEL DE SIGILO");
+			lblNewLabel_14.setForeground(Color.WHITE);
+			lblNewLabel_14.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			lblNewLabel_14.setBounds(593, 164, 126, 32);
+			contentPane.add(lblNewLabel_14);
+		}
+		{
+			txtHechizo = new JTextField();
+			txtHechizo.setColumns(10);
+			txtHechizo.setBounds(475, 199, 105, 20);
+			contentPane.add(txtHechizo);
+		}
+		{
+			lblNewLabel_16 = new JLabel("HECHIZO");
+			lblNewLabel_16.setForeground(Color.WHITE);
+			lblNewLabel_16.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			lblNewLabel_16.setBounds(477, 170, 86, 20);
+			contentPane.add(lblNewLabel_16);
+		}
+		{
+			txtManá = new JTextField();
+			txtManá.setColumns(10);
+			txtManá.setBounds(349, 199, 105, 20);
+			contentPane.add(txtManá);
+		}
+		{
+			lblNewLabel_18 = new JLabel("MANÁ");
+			lblNewLabel_18.setForeground(Color.WHITE);
+			lblNewLabel_18.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			lblNewLabel_18.setBounds(349, 170, 86, 20);
+			contentPane.add(lblNewLabel_18);
+		}
+		{
+			scrollPane = new JScrollPane();
+			scrollPane.setBounds(349, 240, 598, 288);
+			contentPane.add(scrollPane);
+			{
+				txtS = new JTextArea();
+				scrollPane.setViewportView(txtS);
+			}
+		}
+		{
+			lblNewLabel_11 = new JLabel("CANTIDAD DE POCIONES");
+			lblNewLabel_11.setForeground(Color.WHITE);
+			lblNewLabel_11.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			lblNewLabel_11.setBounds(753, 113, 207, 20);
+			contentPane.add(lblNewLabel_11);
+		}
+		{
+			txtPociones = new JTextField();
+			txtPociones.setColumns(10);
+			txtPociones.setBounds(751, 142, 105, 20);
+			contentPane.add(txtPociones);
+		}
+		{
+			txtDañoVen = new JTextField();
+			txtDañoVen.setColumns(10);
+			txtDañoVen.setBounds(738, 201, 105, 20);
+			contentPane.add(txtDañoVen);
+		}
+		{
+			lblNewLabel_12 = new JLabel("DAÑO VENENO");
+			lblNewLabel_12.setForeground(Color.WHITE);
+			lblNewLabel_12.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			lblNewLabel_12.setBounds(740, 172, 116, 20);
+			contentPane.add(lblNewLabel_12);
+		}
 		
 		JLabel lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setIcon(new ImageIcon(Sistema_de_Personajes.class.getResource("/images/background_999x570.png")));
-		lblNewLabel_3.setBounds(0, 0, 339, 562);
+		lblNewLabel_3.setBounds(0, 0, 988, 562);
 		contentPane.add(lblNewLabel_3);
 	
 	}

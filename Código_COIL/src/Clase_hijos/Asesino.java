@@ -3,31 +3,14 @@ package Clase_hijos;
 import Clase_padres.Villano;
 
 public class Asesino extends Villano {
-	private int sigilo, veneno;
-
+	private int nivelSigilo, dañoVeneno;
 	public Asesino(String nombre, int nivel, int salud, int resistencia, int velocidad, int malicia, int energiaOscura,
-			int sigilo, int veneno) {
+			int nivelSigilo, int dañoVeneno) {
 		super(nombre, nivel, salud, resistencia, velocidad, malicia, energiaOscura);
-		this.sigilo = sigilo;
-		this.veneno = veneno;
+		this.nivelSigilo = nivelSigilo;
+		this.dañoVeneno = dañoVeneno;
 	}
-
-	public int getSigilo() {
-		return sigilo;
-	}
-
-	public void setSigilo(int sigilo) {
-		this.sigilo = sigilo;
-	}
-
-	public int getVeneno() {
-		return veneno;
-	}
-
-	public void setVeneno(int veneno) {
-		this.veneno = veneno;
-	}
-
+    
 	@Override
 	public String ataqueBásico() {
 		return null;

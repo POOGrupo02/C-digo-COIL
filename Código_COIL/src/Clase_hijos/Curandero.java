@@ -3,22 +3,21 @@ package Clase_hijos;
 import Clase_padres.Heroe;
 
 public class Curandero extends Heroe{
-	int pociones, mana;
-
+	int cantPociones, mana;
+    
 	public Curandero(String nombre, int nivel, int salud, int resistencia, int velocidad, int honor,
-			int energiaLuminosa, int pociones, int mana) {
+			int energiaLuminosa, int cantPociones, int mana) {
 		super(nombre, nivel, salud, resistencia, velocidad, honor, energiaLuminosa);
-		this.pociones = pociones;
+		this.cantPociones = cantPociones;
 		this.mana = mana;
 	}
-	
 
-	public int getPociones() {
-		return pociones;
+	public int getCantPociones() {
+		return cantPociones;
 	}
 
-	public void setPociones(int pociones) {
-		this.pociones = pociones;
+	public void setCantPociones(int cantPociones) {
+		this.cantPociones = cantPociones;
 	}
 
 	public int getMana() {
