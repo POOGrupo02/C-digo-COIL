@@ -27,8 +27,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
-public class Sistema_de_Personajes extends JFrame implements ActionListener {
+public class Sistema_de_Personajes extends JFrame implements ActionListener, ItemListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -38,7 +40,6 @@ public class Sistema_de_Personajes extends JFrame implements ActionListener {
 	private JButton btnNewButton;
 	private JButton btnElegirHere;
 	private JComboBox<String> cboPerso;
-	private JButton btnMostrarSeleccion;
 	private JLabel lblPersonaje;
 	private JLabel lblNewLabel_4;
 	private JTextField txtNom;
@@ -76,6 +77,7 @@ public class Sistema_de_Personajes extends JFrame implements ActionListener {
 	private JTextField txtEnergíaOscura;
 	private JTextField txtMalicia;
 	private JLabel lblNewLabel_22;
+	private JButton btnAutoComInfo;
 
 	/**
 	 * Launch the application.
@@ -96,9 +98,9 @@ public class Sistema_de_Personajes extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	
+
 	public Sistema_de_Personajes() {
-		
+
 		setTitle("Sistema de Personajes");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 997, 594);
@@ -107,6 +109,13 @@ public class Sistema_de_Personajes extends JFrame implements ActionListener {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		{
+			btnAutoComInfo = new JButton("AUTOCOMPLETAR INFORMACIÓN");
+			btnAutoComInfo.addActionListener(this);
+			btnAutoComInfo.setBounds(53, 467, 230, 23);
+			btnAutoComInfo.setVisible(false);
+			contentPane.add(btnAutoComInfo);
+		}
 		{
 			lblNewLabel = new JLabel("ELECCIÓN DE PERSONAJES");
 			lblNewLabel.setForeground(new Color(255, 255, 255));
@@ -141,22 +150,15 @@ public class Sistema_de_Personajes extends JFrame implements ActionListener {
 			contentPane.add(btnElegirHere);
 		}
 		cboPerso = new JComboBox<>();
+		cboPerso.addItemListener(this);
 		cboPerso.addActionListener(this);
 		cboPerso.setVisible(false);
 		cboPerso.setBounds(65, 173, 180, 25);
 		contentPane.add(cboPerso);
-		{
-	
-		btnMostrarSeleccion = new JButton("MOSTRAR SELECCIÓN");
-		btnMostrarSeleccion.addActionListener(this);
-		btnMostrarSeleccion.setVisible(false);
-		btnMostrarSeleccion.setBounds(65, 131, 180, 25);
-		contentPane.add(btnMostrarSeleccion);
-		}
-		
+
 		lblPersonaje = new JLabel("");
 		lblPersonaje.setIcon(new ImageIcon(Sistema_de_Personajes.class.getResource("/images/asesino.png")));
-		lblPersonaje.setBounds(37, 246, 256, 230);
+		lblPersonaje.setBounds(37, 225, 256, 230);
 		contentPane.add(lblPersonaje);
 		lblPersonaje.setVisible(false);
 		{
@@ -340,7 +342,7 @@ public class Sistema_de_Personajes extends JFrame implements ActionListener {
 			btnMostrarInfo = new JButton("MOSTRAR INFORMACIÓN");
 			btnMostrarInfo.addActionListener(this);
 			btnMostrarInfo.setFont(new Font("Tahoma", Font.PLAIN, 11));
-			btnMostrarInfo.setBounds(37, 521, 186, 23);
+			btnMostrarInfo.setBounds(67, 514, 186, 23);
 			contentPane.add(btnMostrarInfo);
 		}
 		{
@@ -404,22 +406,23 @@ public class Sistema_de_Personajes extends JFrame implements ActionListener {
 			lblNewLabel_19.setBounds(513, 224, 171, 20);
 			contentPane.add(lblNewLabel_19);
 		}
-		
+
 		JLabel lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setIcon(new ImageIcon(Sistema_de_Personajes.class.getResource("/images/background_999x570.png")));
 		lblNewLabel_3.setBounds(0, 0, 988, 562);
 		contentPane.add(lblNewLabel_3);
-	
+
 	}
+
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnAutoComInfo) {
+			do_btnAutoComInfo_actionPerformed(e);
+		}
 		if (e.getSource() == btnMostrarInfo) {
 			do_btnMostrarInfo_actionPerformed(e);
 		}
 		if (e.getSource() == cboPerso) {
 			do_cboPerso_actionPerformed(e);
-		}
-		if (e.getSource() == btnMostrarSeleccion) {
-			do_btnMostrarSeleccion_actionPerformed(e);
 		}
 		if (e.getSource() == btnElegirHere) {
 			do_btnElegirHere_actionPerformed(e);
@@ -428,14 +431,16 @@ public class Sistema_de_Personajes extends JFrame implements ActionListener {
 			do_btnNewButton_actionPerformed(e);
 		}
 	}
+
 	protected void do_btnNewButton_actionPerformed(ActionEvent e) {
 		lblPersonaje.setVisible(false);
 		cboPerso.removeAllItems();
 		cboPerso.addItem("Brujo");
 		cboPerso.addItem("Asesino");
 		cboPerso.setVisible(true);
-		btnMostrarSeleccion.setVisible(true);
+		btnAutoComInfo.setVisible(true);
 	}
+
 	protected void do_btnElegirHere_actionPerformed(ActionEvent e) {
 		lblPersonaje.setVisible(false);
 		cboPerso.removeAllItems();
@@ -443,73 +448,10 @@ public class Sistema_de_Personajes extends JFrame implements ActionListener {
 		cboPerso.addItem("Explorador");
 		cboPerso.addItem("Paladín");
 		cboPerso.setVisible(true);
-		btnMostrarSeleccion.setVisible(true);
+		btnAutoComInfo.setVisible(true);
 	}
-	protected void do_btnMostrarSeleccion_actionPerformed(ActionEvent e) {
-		String seleccion =cboPerso.getSelectedItem().toString();
-		String mensaje = "";
-		
-		Personaje_Base perso=null;
-		switch (seleccion) {
-		case"Brujo" :
-			lblPersonaje.setVisible(true);
-			mensaje = "Has elegido al Brujo.\nUsa magia oscura y drena la vida de sus enemigos.";
-			lblPersonaje.setIcon(new ImageIcon(Sistema_de_Personajes.class.getResource("/images/brujo.png")));
-			Desactivar();
-			txtHechizo.setEditable(true);
-			txtEnergíaOscura.setEditable(true);
-			txtMalicia.setEditable(true);
-			break;
-		case"Asesino" :
-			lblPersonaje.setVisible(true);
-			mensaje = "Has elegido al Asesino.\nSilencioso y mortal, experto en venenos.";
-			lblPersonaje.setIcon(new ImageIcon(Sistema_de_Personajes.class.getResource("/images/asesino.png")));
-			Desactivar();
-			txtNvlSigilo.setEditable(true);
-			txtDañoVen.setEditable(true);
-			txtEnergíaOscura.setEditable(true);
-			txtMalicia.setEditable(true);
-			break;
-		case"Curandero" :
-			lblPersonaje.setVisible(true);
-			mensaje = "Has elegido al Curandero.\nSana y protege a sus aliados en batalla.";
-			lblPersonaje.setIcon(new ImageIcon(Sistema_de_Personajes.class.getResource("/images/curandero.png")));
-			Desactivar();
-			txtCantPociones.setEditable(true);
-			txtManá.setEditable(true);
-			txtEnergiaLumi.setEditable(true );
-			txtHonor.setEditable(true);
-			break;
-		case"Explorador" :
-			lblPersonaje.setVisible(true);
-			mensaje = "Has elegido al Explorador.\nÁgil y certero con el arco, se oculta entre las sombras.";
-			lblPersonaje.setIcon(new ImageIcon(Sistema_de_Personajes.class.getResource("/images/explorador.png")));
-			Desactivar();
-			txtFlecha.setEditable(true);
-			txtEnergiaLumi.setEditable(true );
-			txtHonor.setEditable(true);
-			break;
-		case"Paladín" :
-			lblPersonaje.setVisible(true);
-			mensaje = "Has elegido al Paladín.\\nUn valiente guerrero con gran resistencia y fuerte sentido de la justicia.";
-			lblPersonaje.setIcon(new ImageIcon(Sistema_de_Personajes.class.getResource("/images/paladin.jpg")));
-			Desactivar();
-			txtEscudo.setEditable(true);
-			txtEspada.setEditable(true);
-			txtEnergiaLumi.setEditable(true );
-			txtHonor.setEditable(true);
-			break;
-                  
-		default:
-			mensaje = "Por favor, selecciona un personaje.";
-			break;
-		}
 
-		JOptionPane.showMessageDialog(this, mensaje);
-		JOptionPane.showMessageDialog(this,"Ahora ingrese los datos del personaje");
-	}
-	void Desactivar() 
-	{
+	void Desactivar() {
 		txtEscudo.setEditable(false);
 		txtEspada.setEditable(false);
 		txtFlecha.setEditable(false);
@@ -523,112 +465,262 @@ public class Sistema_de_Personajes extends JFrame implements ActionListener {
 		txtEnergíaOscura.setEditable(false);
 		txtMalicia.setEditable(false);
 	}
+
 	void Imprimir(String s) {
-		txtS.append(s+"\n");
+		txtS.append(s + "\n");
 	}
+
 	void Listado(Personaje_Base perso) {
 		Imprimir(perso.estadoGeneral());
 		Imprimir(perso.ataqueBásico());
 		Imprimir(perso.habilidadEspecial());
 		Imprimir(perso.estadoGeneral());
 	}
+
 	protected void do_cboPerso_actionPerformed(ActionEvent e) {
 
 	}
+
 	protected void do_btnMostrarInfo_actionPerformed(ActionEvent e) {
-		  String seleccion = cboPerso.getSelectedItem().toString();
-		    String nombre = txtNom.getText();
+		txtS.setText("");
+		int nivel, salud, resistencia, velocidad;
+		
+		String seleccion = (cboPerso.getSelectedItem() != null) ? cboPerso.getSelectedItem().toString() : "";
+		String nombre = txtNom.getText();
 
-		    
-		    if (txtNivel.getText().trim().isEmpty() || txtSalud.getText().trim().isEmpty() ||
-		        txtResistencia.getText().trim().isEmpty() || txtVelocidad.getText().trim().isEmpty()) {
-		        JOptionPane.showMessageDialog(null, "Por favor llena todos los campos básicos (nivel, salud, resistencia, velocidad).");
-		        return;
-		    }
+		if (txtNivel.getText().trim().isEmpty() || txtSalud.getText().trim().isEmpty()
+				|| txtResistencia.getText().trim().isEmpty() || txtVelocidad.getText().trim().isEmpty()) {
+			JOptionPane.showMessageDialog(null,
+					"Por favor llena todos los campos básicos (nivel, salud, resistencia, velocidad).");
+			return;
+		}
 
-		    int nivel = Integer.parseInt(txtNivel.getText().trim());
-		    int salud = Integer.parseInt(txtSalud.getText().trim());
-		    int resistencia = Integer.parseInt(txtResistencia.getText().trim());
-		    int velocidad = Integer.parseInt(txtVelocidad.getText().trim());
+		try {
+			nivel = Integer.parseInt(txtNivel.getText().trim());
+			salud = Integer.parseInt(txtSalud.getText().trim());
+			resistencia = Integer.parseInt(txtResistencia.getText().trim());
+			velocidad = Integer.parseInt(txtVelocidad.getText().trim());
 
-		    Personaje_Base perso = null;
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(null,
+					"Por favor ingresa datos válidos.");
+			return;
+		}
 
-		    switch (seleccion) {
-		        case "Brujo":
-		            if (txtHechizo.getText().trim().isEmpty() || txtMalicia.getText().trim().isEmpty() || txtEnergíaOscura.getText().trim().isEmpty()) {
-		                JOptionPane.showMessageDialog(null, "Completa los campos de Hechizo, Malicia y Energía Oscura.");
-		                return;
-		            }
-		            String hechizo = txtHechizo.getText();
-		            int energiaOsc = Integer.parseInt(txtEnergíaOscura.getText().trim());
-		            int malicia = Integer.parseInt(txtMalicia.getText().trim());
-		            perso = new Brujo(nombre, nivel, salud, resistencia, velocidad, malicia, energiaOsc, hechizo);
-		            break;
+		Personaje_Base perso = null;
 
-		        case "Asesino":
-		            if (txtNvlSigilo.getText().trim().isEmpty() || txtDañoVen.getText().trim().isEmpty() || txtMalicia.getText().trim().isEmpty() || txtEnergíaOscura.getText().trim().isEmpty()) {
-		                JOptionPane.showMessageDialog(null, "Completa los campos de Sigilo, Daño por Veneno, Malicia y Energía Oscura.");
-		                return;
-		            }
-		            int nvlSigilo = Integer.parseInt(txtNvlSigilo.getText().trim());
-		            int dañoVen = Integer.parseInt(txtDañoVen.getText().trim());
-		            int energiaOsc1 = Integer.parseInt(txtEnergíaOscura.getText().trim());
-		            int malicia1 = Integer.parseInt(txtMalicia.getText().trim());
-		            perso = new Asesino(nombre, nivel, salud, resistencia, velocidad, malicia1, energiaOsc1, nvlSigilo, dañoVen);
-		            break;
+		switch (seleccion) {
+		case "Brujo":
+			if (txtHechizo.getText().trim().isEmpty() || txtMalicia.getText().trim().isEmpty()
+					|| txtEnergíaOscura.getText().trim().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Completa los campos de Hechizo, Malicia y Energía Oscura.");
+				return;
+			}
+			String hechizo = txtHechizo.getText();
+			int energiaOsc = Integer.parseInt(txtEnergíaOscura.getText().trim());
+			int malicia = Integer.parseInt(txtMalicia.getText().trim());
+			perso = new Brujo(nombre, nivel, salud, resistencia, velocidad, malicia, energiaOsc, hechizo);
+			break;
 
-		        case "Curandero":
+		case "Asesino":
+			if (txtNvlSigilo.getText().trim().isEmpty() || txtDañoVen.getText().trim().isEmpty()
+					|| txtMalicia.getText().trim().isEmpty() || txtEnergíaOscura.getText().trim().isEmpty()) {
+				JOptionPane.showMessageDialog(null,
+						"Completa los campos de Sigilo, Daño por Veneno, Malicia y Energía Oscura.");
+				return;
+			}
+			int nvlSigilo = Integer.parseInt(txtNvlSigilo.getText().trim());
+			int dañoVen = Integer.parseInt(txtDañoVen.getText().trim());
+			int energiaOsc1 = Integer.parseInt(txtEnergíaOscura.getText().trim());
+			int malicia1 = Integer.parseInt(txtMalicia.getText().trim());
+			perso = new Asesino(nombre, nivel, salud, resistencia, velocidad, malicia1, energiaOsc1, nvlSigilo,
+					dañoVen);
+			break;
 
-		            if (txtCantPociones.getText().trim().isEmpty() || 
-		                txtManá.getText().trim().isEmpty() || 
-		                txtHonor.getText().trim().isEmpty() || 
-		                txtEnergiaLumi.getText().trim().isEmpty()) {
-		                
-		                JOptionPane.showMessageDialog(null, "Completa los campos de Cantidad de Pociones, Maná, Honor y Energía Luminosa.");
-		                return;
-		            }
-		            
-		            int cantPociones = Integer.parseInt(txtCantPociones.getText().trim());
-		            int mana = Integer.parseInt(txtManá.getText().trim());
-		            int honor = Integer.parseInt(txtHonor.getText().trim());
-		            int energiaLum = Integer.parseInt(txtEnergiaLumi.getText().trim());
+		case "Curandero":
 
-		            perso = new Curandero(nombre, nivel, salud, resistencia, velocidad, honor, energiaLum, cantPociones, mana);
-		            break;
+			if (txtCantPociones.getText().trim().isEmpty() || txtManá.getText().trim().isEmpty()
+					|| txtHonor.getText().trim().isEmpty() || txtEnergiaLumi.getText().trim().isEmpty()) {
 
-		        case "Explorador":
-		            if (txtFlecha.getText().trim().isEmpty() || txtHonor.getText().trim().isEmpty() || txtEnergiaLumi.getText().trim().isEmpty()) {
-		                JOptionPane.showMessageDialog(null, "Completa los campos de Flecha, Honor y Energía Luminosa.");
-		                return;
-		            }
-		            String flecha = txtFlecha.getText();
-		            int energiaLum1 = Integer.parseInt(txtEnergiaLumi.getText().trim());
-		            int honor1 = Integer.parseInt(txtHonor.getText().trim());
-		            perso = new Explorador(nombre, nivel, salud, resistencia, velocidad, honor1, energiaLum1, flecha);
-		            break;
+				JOptionPane.showMessageDialog(null,
+						"Completa los campos de Cantidad de Pociones, Maná, Honor y Energía Luminosa.");
+				return;
+			}
 
-		        case "Paladín":
-		        	if (txtEscudo.getText().trim().isEmpty() || 
-		        	        txtEspada.getText().trim().isEmpty() || 
-		        	        txtEnergiaLumi.getText().trim().isEmpty() || 
-		        	        txtHonor.getText().trim().isEmpty()) {
-		        	        JOptionPane.showMessageDialog(null, "Completa los campos de Escudo Divino, Espada, Honor y Energía Luminosa.");
-		        	        return;
-		        	    }
+			int cantPociones = Integer.parseInt(txtCantPociones.getText().trim());
+			int mana = Integer.parseInt(txtManá.getText().trim());
+			int honor = Integer.parseInt(txtHonor.getText().trim());
+			int energiaLum = Integer.parseInt(txtEnergiaLumi.getText().trim());
 
-		        	  
-		        	    String escudo = txtEscudo.getText().trim();
-		        	    String espada = txtEspada.getText().trim();
-		        	    int energiaLum2 = Integer.parseInt(txtEnergiaLumi.getText().trim());
-		        	    int honor2 = Integer.parseInt(txtHonor.getText().trim());
+			perso = new Curandero(nombre, nivel, salud, resistencia, velocidad, honor, energiaLum, cantPociones, mana);
+			break;
 
-		        	  
-		        	    perso = new Paladin(nombre, nivel, salud, resistencia, velocidad, honor2, energiaLum2, escudo, espada);
-		        	    break;
-		    }
+		case "Explorador":
+			if (txtFlecha.getText().trim().isEmpty() || txtHonor.getText().trim().isEmpty()
+					|| txtEnergiaLumi.getText().trim().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Completa los campos de Flecha, Honor y Energía Luminosa.");
+				return;
+			}
+			String flecha = txtFlecha.getText();
+			int energiaLum1 = Integer.parseInt(txtEnergiaLumi.getText().trim());
+			int honor1 = Integer.parseInt(txtHonor.getText().trim());
+			perso = new Explorador(nombre, nivel, salud, resistencia, velocidad, honor1, energiaLum1, flecha);
+			break;
 
-		    if (perso != null) {
-		        Listado(perso);
-		    }
+		case "Paladín":
+			if (txtEscudo.getText().trim().isEmpty() || txtEspada.getText().trim().isEmpty()
+					|| txtEnergiaLumi.getText().trim().isEmpty() || txtHonor.getText().trim().isEmpty()) {
+				JOptionPane.showMessageDialog(null,
+						"Completa los campos de Escudo Divino, Espada, Honor y Energía Luminosa.");
+				return;
+			}
+
+			String escudo = txtEscudo.getText().trim();
+			String espada = txtEspada.getText().trim();
+			int energiaLum2 = Integer.parseInt(txtEnergiaLumi.getText().trim());
+			int honor2 = Integer.parseInt(txtHonor.getText().trim());
+
+			perso = new Paladin(nombre, nivel, salud, resistencia, velocidad, honor2, energiaLum2, escudo, espada);
+			break;
+			
+		default:
+			JOptionPane.showMessageDialog(null,
+					"Elige un personaje.");
+		}
+		
+
+		if (perso != null) {
+			Listado(perso);
+		}
+	}
+	protected void do_btnAutoComInfo_actionPerformed(ActionEvent e) {
+		vaciarTextos();
+		String seleccion = cboPerso.getSelectedItem().toString();
+		
+		switch (seleccion) {
+		case "Brujo":
+			txtHechizo.setText("50");
+			txtMalicia.setText("50");
+			txtEnergíaOscura.setText("50");
+			break;
+
+		case "Asesino":
+			txtNvlSigilo.setText("50");
+			txtDañoVen.setText("50");
+			txtMalicia.setText("50");
+			txtEnergíaOscura.setText("50");
+			break;
+
+		case "Curandero":
+			txtCantPociones.setText("50");
+			txtManá.setText("50");
+			txtHonor.setText("50");
+			txtEnergiaLumi.setText("50");
+			break;
+
+		case "Explorador":
+			txtFlecha.setText("50");
+			txtHonor.setText("50");
+			txtEnergiaLumi.setText("50");
+			break;
+
+		case "Paladín":
+			txtEscudo.setText("50");
+			txtEspada.setText("50");
+			txtEnergiaLumi.setText("50");
+			txtHonor.setText("50");
+			break;
+			
+		default:
+			JOptionPane.showMessageDialog(null,
+					"Elige un personaje.");
+		}
+	}
+	
+	private void vaciarTextos() {
+		txtHechizo.setText("");
+		txtMalicia.setText("");
+		txtEnergíaOscura.setText("");
+		txtNvlSigilo.setText("");
+		txtDañoVen.setText("");
+		txtCantPociones.setText("");
+		txtManá.setText("");
+		txtHonor.setText("");
+		txtEnergiaLumi.setText("");
+		txtFlecha.setText("");
+		txtEscudo.setText("");
+		txtEspada.setText("");
+	}
+	public void itemStateChanged(ItemEvent e) {
+		if (e.getSource() == cboPerso) {
+			do_cboPerso_itemStateChanged(e);
+		}
+	}
+	protected void do_cboPerso_itemStateChanged(ItemEvent e) {
+		if (e.getStateChange() != ItemEvent.SELECTED) {
+	        return; //Retornamos porque el evento no pertenece al de un item seleccionado, sino a uno deseleccionado
+	    }
+		//if (cboPerso.getSelectedItem() == null) return;
+		String seleccion = cboPerso.getSelectedItem().toString();
+		String mensaje = "";
+
+		Personaje_Base perso = null;
+		switch (seleccion) {
+		case "Brujo":
+			lblPersonaje.setVisible(true);
+			mensaje = "Has elegido al Brujo.\nUsa magia oscura y drena la vida de sus enemigos.";
+			lblPersonaje.setIcon(new ImageIcon(Sistema_de_Personajes.class.getResource("/images/brujo.png")));
+			Desactivar();
+			txtHechizo.setEditable(true);
+			txtEnergíaOscura.setEditable(true);
+			txtMalicia.setEditable(true);
+			break;
+		case "Asesino":
+			lblPersonaje.setVisible(true);
+			mensaje = "Has elegido al Asesino.\nSilencioso y mortal, experto en venenos.";
+			lblPersonaje.setIcon(new ImageIcon(Sistema_de_Personajes.class.getResource("/images/asesino.png")));
+			Desactivar();
+			txtNvlSigilo.setEditable(true);
+			txtDañoVen.setEditable(true);
+			txtEnergíaOscura.setEditable(true);
+			txtMalicia.setEditable(true);
+			break;
+		case "Curandero":
+			lblPersonaje.setVisible(true);
+			mensaje = "Has elegido al Curandero.\nSana y protege a sus aliados en batalla.";
+			lblPersonaje.setIcon(new ImageIcon(Sistema_de_Personajes.class.getResource("/images/curandero.png")));
+			Desactivar();
+			txtCantPociones.setEditable(true);
+			txtManá.setEditable(true);
+			txtEnergiaLumi.setEditable(true);
+			txtHonor.setEditable(true);
+			break;
+		case "Explorador":
+			lblPersonaje.setVisible(true);
+			mensaje = "Has elegido al Explorador.\nÁgil y certero con el arco, se oculta entre las sombras.";
+			lblPersonaje.setIcon(new ImageIcon(Sistema_de_Personajes.class.getResource("/images/explorador.png")));
+			Desactivar();
+			txtFlecha.setEditable(true);
+			txtEnergiaLumi.setEditable(true);
+			txtHonor.setEditable(true);
+			break;
+		case "Paladín":
+			lblPersonaje.setVisible(true);
+			mensaje = "Has elegido al Paladín.\nUn valiente guerrero con gran resistencia y fuerte sentido de la justicia.";
+			lblPersonaje.setIcon(new ImageIcon(Sistema_de_Personajes.class.getResource("/images/paladin.jpg")));
+			Desactivar();
+			txtEscudo.setEditable(true);
+			txtEspada.setEditable(true);
+			txtEnergiaLumi.setEditable(true);
+			txtHonor.setEditable(true);
+			break;
+
+		default:
+			mensaje = "Por favor, selecciona un personaje.";
+			break;
+		}
+
+		JOptionPane.showMessageDialog(null, mensaje);
+		JOptionPane.showMessageDialog(null, "Ahora ingrese los datos del personaje");
 	}
 }
