@@ -536,56 +536,99 @@ public class Sistema_de_Personajes extends JFrame implements ActionListener {
 
 	}
 	protected void do_btnMostrarInfo_actionPerformed(ActionEvent e) {
-		String seleccion =cboPerso.getSelectedItem().toString();
-	
-		
-		String nombre=txtNom.getText();
-		int nivel=Integer.parseInt(txtNivel.getText());
-		int salud =Integer.parseInt(txtSalud.getText());
-		int resistencia=Integer.parseInt(txtResistencia.getText());
-		int velocidad=Integer.parseInt(txtVelocidad.getText());
-		
-		Personaje_Base perso=null;
-		switch (seleccion) {
-		case"Brujo" :
-		    String hechizo=txtHechizo.getText();
-		    int energiaOsc=Integer.parseInt(txtEnergíaOscura.getText());
-		    int malicia=Integer.parseInt(txtMalicia.getText());
-		    perso=new Brujo(nombre, nivel, salud, resistencia, velocidad, malicia, energiaOsc, hechizo);
-		    Listado(perso);
-			break;
-		case"Asesino" :
-			int nvlSigilo=Integer.parseInt(txtNvlSigilo.getText());
-			int dañoVen=Integer.parseInt(txtDañoVen.getText());
-			int energiaOsc1=Integer.parseInt(txtEnergíaOscura.getText());
-		    int malicia1=Integer.parseInt(txtMalicia.getText());
-			perso=new Asesino(nombre, nivel, salud, resistencia, velocidad, malicia1, energiaOsc1, nvlSigilo, dañoVen);
-			Listado(perso);
-			break;
-		case"Curandero" :
-			int cantPociones=Integer.parseInt(txtCantPociones.getText());
-			int maná=Integer.parseInt(txtManá.getText());
-			int energiaLum=Integer.parseInt(txtEnergiaLumi.getText());
-		    int honor=Integer.parseInt(txtHechizo.getText());
-		    perso=new Curandero(nombre, nivel, salud, resistencia, velocidad, honor, energiaLum, cantPociones, maná);
-		    Listado(perso);
-			break;
-		case"Explorador" :
-			String flecha=txtFlecha.getText();
-			int energiaLum1=Integer.parseInt(txtEnergiaLumi.getText());
-		    int honor1=Integer.parseInt(txtHechizo.getText());
-		    perso=new Explorador(nombre, nivel, salud, resistencia, velocidad, honor1, energiaLum1, flecha);
-		    Listado(perso);
-			break;
-		case"Paladín" :
-			String escudo=txtEscudo.getText();
-			String espada=txtEspada.getText();
-			int energiaLum2=Integer.parseInt(txtEnergiaLumi.getText());
-		    int honor2=Integer.parseInt(txtHechizo.getText());
-		    perso=new Paladin(nombre, nivel, salud, resistencia, velocidad, honor2, energiaLum2, escudo, espada);
-		    Listado(perso);
-			break;
-                 
-		}
+		  String seleccion = cboPerso.getSelectedItem().toString();
+		    String nombre = txtNom.getText();
+
+		    
+		    if (txtNivel.getText().trim().isEmpty() || txtSalud.getText().trim().isEmpty() ||
+		        txtResistencia.getText().trim().isEmpty() || txtVelocidad.getText().trim().isEmpty()) {
+		        JOptionPane.showMessageDialog(null, "Por favor llena todos los campos básicos (nivel, salud, resistencia, velocidad).");
+		        return;
+		    }
+
+		    int nivel = Integer.parseInt(txtNivel.getText().trim());
+		    int salud = Integer.parseInt(txtSalud.getText().trim());
+		    int resistencia = Integer.parseInt(txtResistencia.getText().trim());
+		    int velocidad = Integer.parseInt(txtVelocidad.getText().trim());
+
+		    Personaje_Base perso = null;
+
+		    switch (seleccion) {
+		        case "Brujo":
+		            if (txtHechizo.getText().trim().isEmpty() || txtMalicia.getText().trim().isEmpty() || txtEnergíaOscura.getText().trim().isEmpty()) {
+		                JOptionPane.showMessageDialog(null, "Completa los campos de Hechizo, Malicia y Energía Oscura.");
+		                return;
+		            }
+		            String hechizo = txtHechizo.getText();
+		            int energiaOsc = Integer.parseInt(txtEnergíaOscura.getText().trim());
+		            int malicia = Integer.parseInt(txtMalicia.getText().trim());
+		            perso = new Brujo(nombre, nivel, salud, resistencia, velocidad, malicia, energiaOsc, hechizo);
+		            break;
+
+		        case "Asesino":
+		            if (txtNvlSigilo.getText().trim().isEmpty() || txtDañoVen.getText().trim().isEmpty() || txtMalicia.getText().trim().isEmpty() || txtEnergíaOscura.getText().trim().isEmpty()) {
+		                JOptionPane.showMessageDialog(null, "Completa los campos de Sigilo, Daño por Veneno, Malicia y Energía Oscura.");
+		                return;
+		            }
+		            int nvlSigilo = Integer.parseInt(txtNvlSigilo.getText().trim());
+		            int dañoVen = Integer.parseInt(txtDañoVen.getText().trim());
+		            int energiaOsc1 = Integer.parseInt(txtEnergíaOscura.getText().trim());
+		            int malicia1 = Integer.parseInt(txtMalicia.getText().trim());
+		            perso = new Asesino(nombre, nivel, salud, resistencia, velocidad, malicia1, energiaOsc1, nvlSigilo, dañoVen);
+		            break;
+
+		        case "Curandero":
+
+		            if (txtCantPociones.getText().trim().isEmpty() || 
+		                txtManá.getText().trim().isEmpty() || 
+		                txtHonor.getText().trim().isEmpty() || 
+		                txtEnergiaLumi.getText().trim().isEmpty()) {
+		                
+		                JOptionPane.showMessageDialog(null, "Completa los campos de Cantidad de Pociones, Maná, Honor y Energía Luminosa.");
+		                return;
+		            }
+		            
+		            int cantPociones = Integer.parseInt(txtCantPociones.getText().trim());
+		            int mana = Integer.parseInt(txtManá.getText().trim());
+		            int honor = Integer.parseInt(txtHonor.getText().trim());
+		            int energiaLum = Integer.parseInt(txtEnergiaLumi.getText().trim());
+
+		            perso = new Curandero(nombre, nivel, salud, resistencia, velocidad, honor, energiaLum, cantPociones, mana);
+		            break;
+
+		        case "Explorador":
+		            if (txtFlecha.getText().trim().isEmpty() || txtHonor.getText().trim().isEmpty() || txtEnergiaLumi.getText().trim().isEmpty()) {
+		                JOptionPane.showMessageDialog(null, "Completa los campos de Flecha, Honor y Energía Luminosa.");
+		                return;
+		            }
+		            String flecha = txtFlecha.getText();
+		            int energiaLum1 = Integer.parseInt(txtEnergiaLumi.getText().trim());
+		            int honor1 = Integer.parseInt(txtHonor.getText().trim());
+		            perso = new Explorador(nombre, nivel, salud, resistencia, velocidad, honor1, energiaLum1, flecha);
+		            break;
+
+		        case "Paladín":
+		        	if (txtEscudo.getText().trim().isEmpty() || 
+		        	        txtEspada.getText().trim().isEmpty() || 
+		        	        txtEnergiaLumi.getText().trim().isEmpty() || 
+		        	        txtHonor.getText().trim().isEmpty()) {
+		        	        JOptionPane.showMessageDialog(null, "Completa los campos de Escudo Divino, Espada, Honor y Energía Luminosa.");
+		        	        return;
+		        	    }
+
+		        	  
+		        	    String escudo = txtEscudo.getText().trim();
+		        	    String espada = txtEspada.getText().trim();
+		        	    int energiaLum2 = Integer.parseInt(txtEnergiaLumi.getText().trim());
+		        	    int honor2 = Integer.parseInt(txtHonor.getText().trim());
+
+		        	  
+		        	    perso = new Paladin(nombre, nivel, salud, resistencia, velocidad, honor2, energiaLum2, escudo, espada);
+		        	    break;
+		    }
+
+		    if (perso != null) {
+		        Listado(perso);
+		    }
 	}
 }

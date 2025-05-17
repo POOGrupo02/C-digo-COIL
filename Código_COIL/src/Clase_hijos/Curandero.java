@@ -2,50 +2,52 @@ package Clase_hijos;
 
 import Clase_padres.Heroe;
 
-public class Curandero extends Heroe{
-	int cantPociones, mana;
-    
-	public Curandero(String nombre, int nivel, int salud, int resistencia, int velocidad, int honor,
-			int energiaLuminosa, int cantPociones, int mana) {
-		super(nombre, nivel, salud, resistencia, velocidad, honor, energiaLuminosa);
-		this.cantPociones = cantPociones;
-		this.mana = mana;
-	}
+public class Curandero extends Heroe {
 
-	public int getCantPociones() {
-		return cantPociones;
-	}
+    private int cantidadPociones;
+    private int mana;
 
-	public void setCantPociones(int cantPociones) {
-		this.cantPociones = cantPociones;
-	}
+    public Curandero(String nombre, int nivel, int salud, int resistencia, int velocidad, int honor, int energiaLuminosa,
+                     int cantidadPociones, int mana) {
+        super(nombre, nivel, salud, resistencia, velocidad, honor, energiaLuminosa);
+        this.cantidadPociones = cantidadPociones;
+        this.mana = mana;
+    }
 
-	public int getMana() {
-		return mana;
-	}
+    public int getCantidadPociones() {
+        return cantidadPociones;
+    }
 
-	public void setMana(int mana) {
-		this.mana = mana;
-	}
+    public void setCantidadPociones(int cantidadPociones) {
+        this.cantidadPociones = cantidadPociones;
+    }
 
-	@Override
-	public String ataqueBásico() {
-		return null;
-	}
+    public int getMana() {
+        return mana;
+    }
 
-	@Override
-	public String habilidadEspecial() {
-		return null;
-	}
+    public void setMana(int mana) {
+        this.mana = mana;
+    }
 
-	@Override
-	public String resumenCombate() {
-		return null;
-	}
+    @Override
+    public String ataqueBásico() {
+        return "El curandero " + nombre + " ataca usando " + mana + " puntos de maná.";
+    }
 
-	@Override
-	public String estadoGeneral() {
-		return null;
-	}
-	
+    @Override
+    public String habilidadEspecial() {
+        return "La habilidad especial del curandero " + nombre + " consiste en usar " + cantidadPociones + " pociones para sanar.";
+    }
+
+    @Override
+    public String resumenCombate() {
+        return "El curandero " + nombre + " utilizó sus pociones y maná para apoyar en la batalla.";
+    }
+
+    @Override
+    public String estadoGeneral() {
+        return "El curandero " + nombre + " de nivel " + nivel + " tiene salud " + salud + ", resistencia " + resistencia +
+               ", velocidad " + velocidad + ", honor " + honor + " y energía luminosa " + energiaLuminosa + ".";
+    }
 }
