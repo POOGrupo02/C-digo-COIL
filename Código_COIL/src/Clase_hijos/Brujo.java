@@ -20,22 +20,22 @@ public class Brujo extends Villano {
 		this.hechizo = hechizo;
 	}
 
-	@Override
+	
 	public String ataqueBásico() {
 		return "El ataque básico del brujo "+nombre +" utiliza "+getEnergiaOscura()+" puntos de energía oscura y "+getMalicia()+" de malicia";
 	}
 
-	@Override
+	
 	public String habilidadEspecial() {
 		return "La habilidad especial del brujo "+nombre+" es "+hechizo;
 	}
 
-	@Override
+	
 	public String resumenCombate() {
 		return "El brujo "+nombre+" inflingió daño con el hechizo "+hechizo;
 	}
 
-	@Override
+	
 	public String estadoGeneral() {
 		return "El brujo "+nombre+" de nivel "+nivel+" tiene una salud de "+salud+", una resistencia de "+resistencia+" y ataca con una velocidad de "+
 	velocidad;

@@ -27,17 +27,17 @@ public class Paladin extends Heroe {
         this.espada = espada;
     }
 
-    @Override
+    
     public String ataqueBásico() {
         return "El ataque básico del paladín " + nombre + " es usar la espada: " + espada;
     }
 
-    @Override
+    
     public String habilidadEspecial() {
         return "La habilidad especial del paladín " + nombre + " es el escudo divino: " + escudoDivino;
     }
 
-    @Override
+   
     public String resumenCombate() {
         return "El paladín " + nombre + " defendió con el escudo " + escudoDivino + " y atacó con la espada " + espada;
     }

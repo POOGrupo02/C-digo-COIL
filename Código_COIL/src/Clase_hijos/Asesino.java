@@ -27,22 +27,22 @@ public class Asesino extends Villano {
         this.dañoVeneno = dañoVeneno;
     }
 
-    @Override
+    
     public String ataqueBásico() {
         return "El ataque básico del asesino " + nombre + " usa sigilo de nivel " + nivelSigilo + " y daño por veneno de " + dañoVeneno;
     }
 
-    @Override
+    
     public String habilidadEspecial() {
         return "La habilidad especial del asesino " + nombre + " es eliminar al enemigo silenciosamente";
     }
 
-    @Override
+    
     public String resumenCombate() {
         return "El asesino " + nombre + " atacó usando sigilo y veneno causando daño mortal";
     }
 
-    @Override
+    
     public String estadoGeneral() {
         return "El asesino " + nombre + " de nivel " + nivel + " tiene una salud de " + salud + ", una resistencia de " + resistencia + " y una velocidad de " + velocidad;
     }

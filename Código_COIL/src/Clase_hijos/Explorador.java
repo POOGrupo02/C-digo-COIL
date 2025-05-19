@@ -20,23 +20,23 @@ public class Explorador extends Heroe {
 		this.flechaEspecial = flechaEspecial;
 	}
 
-	@Override
+	
 	public String ataqueBásico() {
 		return "El ataque básico del explorador " + nombre + " utiliza su flecha especial: " + flechaEspecial;
 	}
 
-	@Override
+	
 	public String habilidadEspecial() {
 		return "La habilidad especial del explorador " + nombre + " combina honor (" + honor + 
 		       ") y energía luminosa (" + energiaLuminosa + ") para potenciar su flecha.";
 	}
 
-	@Override
+	
 	public String resumenCombate() {
 		return "El explorador " + nombre + " infligió daño con la flecha especial: " + flechaEspecial;
 	}
 
-	@Override
+	
 	public String estadoGeneral() {
 		return "El explorador " + nombre + " de nivel " + nivel + " tiene salud " + salud + 
 		       ", resistencia " + resistencia + ", y velocidad " + velocidad + ".";

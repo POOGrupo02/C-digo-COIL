@@ -30,22 +30,22 @@ public class Curandero extends Heroe {
         this.mana = mana;
     }
 
-    @Override
+    
     public String ataqueBásico() {
         return "El curandero " + nombre + " ataca usando " + mana + " puntos de maná.";
     }
 
-    @Override
+    
     public String habilidadEspecial() {
         return "La habilidad especial del curandero " + nombre + " consiste en usar " + cantidadPociones + " pociones para sanar.";
     }
 
-    @Override
+    
     public String resumenCombate() {
         return "El curandero " + nombre + " utilizó sus pociones y maná para apoyar en la batalla.";
     }
 
-    @Override
+    
     public String estadoGeneral() {
         return "El curandero " + nombre + " de nivel " + nivel + " tiene salud " + salud + ", resistencia " + resistencia +
                ", velocidad " + velocidad + ", honor " + honor + " y energía luminosa " + energiaLuminosa + ".";

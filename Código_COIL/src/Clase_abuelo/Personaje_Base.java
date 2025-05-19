@@ -4,12 +4,13 @@ public abstract class Personaje_Base {
 protected String nombre;
 protected int nivel,salud,resistencia,velocidad;
 public Personaje_Base(String nombre, int nivel, int salud, int resistencia, int velocidad) {
-	super();
+
 	this.nombre = nombre;
 	this.nivel = nivel;
 	this.salud = salud;
 	this.resistencia = resistencia;
 	this.velocidad = velocidad;
+	
 }
 public String getNombre() {
 	return nombre;

@@ -170,7 +170,7 @@ public class Sistema_de_Personajes extends JFrame implements ActionListener, Ite
 		}
 		{
 			txtNom = new JTextField();
-			txtNom.setBounds(349, 69, 105, 20);
+			txtNom.setBounds(359, 69, 105, 20);
 			contentPane.add(txtNom);
 			txtNom.setColumns(10);
 		}
